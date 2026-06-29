@@ -18,7 +18,7 @@ public class CampaignPerformance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long performance_id;
 
-    private Integer impression;
+    private Integer impressions;
 
 
     private Integer clicks;

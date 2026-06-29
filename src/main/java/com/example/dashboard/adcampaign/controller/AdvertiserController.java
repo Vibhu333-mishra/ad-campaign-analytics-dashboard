@@ -34,4 +34,18 @@ public class AdvertiserController {
     public Optional<Advertiser> getAdvertiserById(Long id){
         return advertiserService.getAdvertiserById(id);
     }
+
+    // Update Advertiser
+    @PutMapping("/{id}")
+    public Advertiser updateAdvertiser(@PathVariable Long id,
+                                       @RequestBody Advertiser advertiser) {
+        return advertiserService.updateAdvertiser(id, advertiser);
+    }
+
+    // Delete Advertiser
+    @DeleteMapping("/{id}")
+    public String deleteAdvertiser(@PathVariable Long id) {
+        advertiserService.deleteAdvertiser(id);
+        return "Advertiser deleted successfully.";
+    }
 }

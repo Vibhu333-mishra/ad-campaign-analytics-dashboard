@@ -32,5 +32,27 @@ public class AdvertiserService {
         return advertiserRepository.findById(id);
        }
 
+    // Update Advertiser
+    public Advertiser updateAdvertiser(Long id, Advertiser updatedAdvertiser) {
+
+        Advertiser advertiser = advertiserRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Advertiser not found"));
+
+        advertiser.setAdvertiser_name(updatedAdvertiser.getAdvertiser_name());
+        advertiser.setIndustry(updatedAdvertiser.getIndustry());
+        advertiser.setContactEmail(updatedAdvertiser.getContactEmail());
+
+        return advertiserRepository.save(advertiser);
+    }
+
+    // Delete Advertiser
+    public void deleteAdvertiser(Long id) {
+
+        if (!advertiserRepository.existsById(id)) {
+            throw new RuntimeException("Advertiser not found");
+        }
+
+        advertiserRepository.deleteById(id);
+    }
 
 }

@@ -29,4 +29,17 @@ public class CampaignPerformanceController {
         return campaignPerformanceService.getCampaignPerformanceById(id);
     }
 
+    @PutMapping("/{id}")
+    public CampaignPerformance updatePerformance(@PathVariable Long id,
+                                                 @RequestBody CampaignPerformance performance) {
+        return campaignPerformanceService.updatePerformance(id, performance);
+    }
+
+    // Delete Performance
+    @DeleteMapping("/{id}")
+    public String deletePerformance(@PathVariable Long id) {
+        campaignPerformanceService.deletePerformance(id);
+        return "Performance record deleted successfully!";
+    }
+
 }

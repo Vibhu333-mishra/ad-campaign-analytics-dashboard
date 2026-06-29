@@ -30,4 +30,20 @@ public class CampaignController {
         return campaignService.getCampaignById(id);
     }
 
+
+    // Update Campaign
+    @PutMapping("/{id}")
+    public Campaign updateCampaign(@PathVariable Long id,
+                                   @RequestBody Campaign campaign) {
+        return campaignService.updateCampaign(id, campaign);
+    }
+
+
+    // Delete Campaign
+    @DeleteMapping("/{id}")
+    public String deleteCampaign(@PathVariable Long id) {
+        campaignService.deleteCampaign(id);
+        return "Campaign deleted successfully!";
+    }
+
 }

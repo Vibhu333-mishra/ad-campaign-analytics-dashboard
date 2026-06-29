@@ -18,11 +18,35 @@ public class CampaignPerformanceService {
     public CampaignPerformance savePerformance(CampaignPerformance performance){
         return campaignPerformanceRepository.save(performance);
     }
+
     public List<CampaignPerformance> getAllCampaignPerformance(){
         return campaignPerformanceRepository.findAll();
     }
 
     public Optional<CampaignPerformance> getCampaignPerformanceById(Long id){
         return campaignPerformanceRepository.findById(id);
+    }
+
+    public CampaignPerformance updatePerformance(Long id, CampaignPerformance updatedPerformance) {
+
+        CampaignPerformance performance = campaignPerformanceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Performance record not found"));
+
+        performance.setImpressions(updatedPerformance.getImpressions());
+        performance.setClicks(updatedPerformance.getClicks());
+        performance.setConversions(updatedPerformance.getConversions());
+        performance.setRevenue(updatedPerformance.getRevenue());
+
+        return campaignPerformanceRepository.save(performance);
+    }
+
+    // Delete Performance
+    public void deletePerformance(Long id) {
+
+        if (!campaignPerformanceRepository.existsById(id)) {
+            throw new RuntimeException("Performance record not found");
+        }
+
+        campaignPerformanceRepository.deleteById(id);
     }
 }
