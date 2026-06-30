@@ -6,6 +6,9 @@ import com.example.dashboard.adcampaign.repository.CampaignRepository;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Objects;
+
 @Service
 public class DashboardService {
     private final AdvertiserRepository advertiserRepository;
@@ -51,5 +54,8 @@ public class DashboardService {
             dashboard.setRoi(((totalRevenue - totalSpend) / totalSpend) * 100);
         }
         return  dashboard;
+    }
+    public List<CountryRevenueDTO> getRevenueByCountry(){
+        List<Objects> result= campaignPerformanceRepository.getRevenueByCountry();
     }
 }

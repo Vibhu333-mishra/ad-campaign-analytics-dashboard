@@ -4,6 +4,8 @@ import com.example.dashboard.adcampaign.entity.CampaignPerformance;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface CampaignPerformanceRepository extends JpaRepository<CampaignPerformance, Long> {
     @Query("SELECT Sum(cp.impressions) FROM CampaignPerformance cp")
     Integer getTotalImpressions();
@@ -19,6 +21,13 @@ public interface CampaignPerformanceRepository extends JpaRepository<CampaignPer
 
     @Query("SELECT SUM(cp.revenue) FROM CampaignPerformance cp")
     Double getTotalRevenue();
+
+    @Query("""
+             SELECT cp.country, Sum(cp.revenue)
+            FROM CampaignPerformancr cp
+            GROUP BY cp.country
+            """)
+    List<Object> getRevenueByCountry();
 
 
 
